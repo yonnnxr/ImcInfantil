@@ -1,11 +1,9 @@
-// Função para calcular o IMC
+
 function calcular_imc(peso, altura) {
     return peso / (altura * altura);
   }
-  
-  // Função para interpretar o IMC com base em idade, sexo e percentis
+
   function interpretar_imc(idade, sexo, imc) {
-    // Dicionários com os percentis de IMC por idade e sexo (2 a 14 anos) - ATUALIZADO
     var imc_meninos = {
         2:  [13.9, 16.6, 18.1],
         3:  [13.5, 16.0, 17.6],
@@ -37,15 +35,12 @@ function calcular_imc(peso, altura) {
         13: [12.5, 14.8, 16.4],
         14: [12.8, 15.3, 16.9]
     };
-  
-    // Seleciona o dicionário correto com base no sexo
+
     var percentis = (sexo == "masculino") ? imc_meninos[idade] : imc_meninas[idade];
   
     if (!percentis) {
       return "Dados de percentil não disponíveis para esta idade.";
     }
-  
-    // Compara o IMC com os percentis e retorna a interpretação
     if (imc < percentis[0]) {
         return "abaixo do peso";
     } else if (imc < percentis[1]) {
@@ -58,20 +53,16 @@ function calcular_imc(peso, altura) {
   }
   
   function calcularIMC() {
-      // Obter valores dos campos
       var idade = parseInt(document.getElementById("idade").value);
       var sexo = document.getElementById("sexo").value;
       var peso = parseFloat(document.getElementById("peso").value);
       var altura = parseFloat(document.getElementById("altura").value)   
-   / 100; // Converter para metros   
+   / 100;
   
-  
-      // Calcula o IMC
+
       var imc = calcular_imc(peso, altura);
-  
-      // Obtém a interpretação do IMC
+ 
       var resultado = interpretar_imc(idade, sexo, imc);
-  
-      // Exibir resultado
+ 
       document.getElementById("resultado").innerHTML = "IMC: " + imc.toFixed(2) + " - " + resultado;
   }
